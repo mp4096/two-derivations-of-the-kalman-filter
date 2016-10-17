@@ -81,9 +81,7 @@ MIT License
 		<p>Consider an autonomous linear dynamical system</p>
 		<script type="math/tex; mode=display">
 			\begin{align}
-				\label{eq:lds:dynamics}
 				x_k &= A_k x_{k - 1} + w_k, \\
-				\label{eq:lds:measurement}
 				y_k &= C_k x_k + v_k
 			\end{align}
 		</script>
@@ -153,7 +151,6 @@ MIT License
 		linear dynamical system structure [3]:
 	</p>
 	<script type="math/tex; mode=display">
-		\label{eq:mvue:lds:assumption}
 		\hat{x}_k = \mathcal{A}_k \hat{x}_{k - 1} + \mathcal{K}_k y_k.
 	</script>
 	<p>
@@ -272,7 +269,6 @@ MIT License
 	</script><br>
 	<p>This minimiser is the <em>Kalman gain</em>:</p>
 	<script type="math/tex; mode=display">
-		\label{eq:kalman:gain:mvue}
 		K_k = \mathcal{K}_k^* =
 		P_k^- C_k^\mathrm{T}
 		\left( C_k P_k^- C_k^\mathrm{T} + R_k \right)^{-1}.
@@ -333,7 +329,6 @@ MIT License
 	</p>
 	<p>We can now apply Bayes’ theorem for our filtering problem:</p>
 	<script type="math/tex; mode=display">
-		\label{eq:bayes:kf}
 		p(x_k \ | \ y_k, \mathcal{Y}_{k - 1})
 		=
 		\frac{%
@@ -391,12 +386,11 @@ MIT License
 		\begin{aligned}
 		  p(x_k \ | \ \mathcal{Y}_{k - 1})
 		  &=
-		  \label{eq:transition:chapman:kolmogorov}
 		  \int p(x_k \ | \ x_{k - 1}) \ p(x_{k - 1} \ | \ \mathcal{Y}_{k - 1}) dx_{k - 1} \\
 		  &=
-		  \int \left. \mathcal{N}(A_{k - 1} x_{k - 1}, \ Q_k) \right|_{x_k} \  \left. \mathcal{N}(\hat{x}_{k - 1}, \ P_{k - 1}) \right|_{x_{k - 1}} dx_{k - 1}  \\
+		  \int \left. \mathcal{N}(A_{k - 1} x_{k - 1}, \ Q_k) \right|_{x_k} \ %
+		  \left. \mathcal{N}(\hat{x}_{k - 1}, \ P_{k - 1}) \right|_{x_{k - 1}} dx_{k - 1}  \\
 		  &=
-		  \label{eq:marginalised:prior}
 		  \left. \mathcal{N}(A_{k - 1} \hat{x}_{k - 1}, \ A_{k - 1} P_{k - 1} A_{k - 1}^\mathrm{T} + Q_k) \right|_{x_k} \\
 		  &=
 		  \left. \mathcal{N}(\hat{x}_k^-, \ P_k^-) \right|_{x_k}.
@@ -419,12 +413,11 @@ MIT License
 		  &=
 		  \int p(y_k, x_k \ | \ \mathcal{Y}_{k - 1}) dx_k \\
 		  &=
-		  \label{eq:measurement:chapman:kolmogorov}
 		  \int p(y_k \ | \ x_k) \  p(x_k \ | \ \mathcal{Y}_{k - 1}) dx_k \\
 		  &=
-		  \int \left. \mathcal{N}(C_k x_k, \ R_k) \right|_{y_k} \ \left. \mathcal{N}(\hat{x}_k^-, \ P_k^-) \right|_{x_k} dx_k \\
+		  \int \left. \mathcal{N}(C_k x_k, \ R_k) \right|_{y_k} \ %
+		  \left. \mathcal{N}(\hat{x}_k^-, \ P_k^-) \right|_{x_k} dx_k \\
 		  &=
-		  \label{eq:marginalised:total}
 		  \left. \mathcal{N}(C_k \hat{x}_k^-, \ C_k P_k^- C_k^\mathrm{T} + R_k) \right|_{y_k} \\
 		  &=
 		  \left. \mathcal{N}(\hat{y}_k^-, \ C_k P_k^- C_k^\mathrm{T} + R_k) \right|_{y_k}
@@ -461,7 +454,6 @@ MIT License
 		with
 		<script type="math/tex; mode=display">
 			\begin{aligned}
-				\label{eq:posterior:mean}
 				\hat{x}_k &= \hat{x}_k^- + P_k C_k^\mathrm{T} R_k^{-1} (y_k - \hat{y}_k^-), \\
 				P_k  &= \left( (P_k^-)^{-1} + C_k^\mathrm{T} R_k^{-1} C_k \right)^{-1}.
 				% = \left( I - P_k^- C_k^\mathrm{T} (C_k P_k^- C_k^\mathrm{T} + R_k)^{-1} C_k \right) P_k^-.
@@ -491,23 +483,15 @@ MIT License
 			C_k^\mathrm{T}
 			&=
 			C_k^\mathrm{T}, \\
-			%
-			%
 			C_k^\mathrm{T} R_k^{-1} C_k P_k^- C_k^\mathrm{T} + C_k^\mathrm{T}
 			&=
 			C_k^\mathrm{T} R_k^{-1} C_k P_k^- C_k^\mathrm{T} + C_k^\mathrm{T}, \\
-			%
-			%
 			C_k^\mathrm{T} R_k^{-1} \left( C_k P_k^- C_k^\mathrm{T} + R_k \right)
 			&=
 			\left( (P_k^-)^{-1} + C_k^\mathrm{T} R_k^{-1} C_k \right) P_k^- C_k^\mathrm{T}, \\
-			%
-			%
 			\left( (P_k^-)^{-1} + C_k^\mathrm{T} R_k^{-1} C_k \right)^{-1} C_k^\mathrm{T} R_k^{-1}
 			&=
 			P_k^- C_k^\mathrm{T} \left( C_k P_k^- C_k^\mathrm{T} + R_k \right)^{-1}, \\
-			%
-			%
 			P_k C_k^\mathrm{T} R_k^{-1} &= K_k.
 		\end{aligned}
 	</script><br />
