@@ -629,7 +629,7 @@ MIT License
 
 <script>
 	Reveal.initialize({
-		controls: true,
+		controls: false,
 		progress: true,
 		history: true,
 		center: false,
@@ -644,7 +644,11 @@ MIT License
 		dependencies: [
 			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 			{ src: 'plugin/math/math.js', async: true }
-		]
+		],
+	});
+	Reveal.configure({
+		slideNumber: true,
+		slideNumber: 'c/t',
 	});
 </script>
 </body>
