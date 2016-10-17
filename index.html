@@ -53,18 +53,17 @@ MIT License
 <section>
 	<h3>Outline</h3>
 	<ul>
-		<li><p>Introduction</p></li>
-		<li><p>Inference in linear dynamical systems</p></li>
-		<li><p>Frequentist derivation: MVUE</p></li>
-		<li><p>Bayesian derivation: Iterative belief update</p></li>
-		<li><p>Comparison of frequentist and Bayesian approaches</p></li>
-		<li><p>Nonlinear and non-Gaussian extensions</p></li>
+		<li><p><a href="#/2">Introduction</a></p></li>
+		<li><p><a href="#/3">Inference in linear dynamical systems</a></p></li>
+		<li><p><a href="#/5">Frequentist derivation: MVUE</a></p></li>
+		<li><p><a href="#/10">Bayesian derivation: Iterative belief update</a></p></li>
+		<li><p><a href="#/18">Comparison of frequentist and Bayesian approaches</a></p></li>
+		<li><p><a href="#/19">Nonlinear and non-Gaussian extensions</a></p></li>
 	</ul>
 </section>
 
 <section>
 	<h3>Introduction</h3>
-
 	<p>
 		We shall see a derivation of the Kalman filter from a frequentist and a
 		Bayesianist statistician’s point of view.
@@ -123,7 +122,10 @@ MIT License
 
 <section>
 	<h3>Frequentist derivation: MVUE</h3>
-	<p>We want to derive a minimum variance unbiased estimator (MVUE):</p>
+	<p>
+		We want to derive a minimum variance unbiased estimator (MVUE)
+		with the following properties:
+	</p>
 	<ul>
 		<li class="fragment">
 			<p><em>minimum variance:</em> the error variance should be minimised:</p>
@@ -144,7 +146,7 @@ MIT License
 </section>
 
 <section>
-	<h3>Frequentist derivation 1/5</h3>
+	<h3>Frequentist derivation 1/4</h3>
 	<p>
 		Since $w_k$, $v_k$ are temporally white and spatially Gaussian,
 		the MVUE is a linear filter with the following
@@ -157,6 +159,7 @@ MIT License
 		We define the estimation error $\tilde{x}_k = \hat{x}_k - x_k$
 		and plug the filter and plant dynamics into it.
 	</p>
+	<div class="fragment">
 	<p>After some linear algebra, we obtain $\tilde{x}_k$:</p>
 	<script type="math/tex; mode=display">
 		\tilde{x}_k
@@ -169,6 +172,8 @@ MIT License
 		+
 		\mathcal{K}_k v_k.
 	</script>
+	</div>
+	<div class="fragment">
 	<p>
 		However, we are interested in the <em>expected value</em>
 		of the estimation error:
@@ -186,6 +191,8 @@ MIT License
 			\mathcal{K}_k \mathbb{E}\{v_k\}.
 		\end{align}
 	</script>
+	</div>
+	<div class="fragment">
 	<p>
 		Clearly, $(\mathcal{K}_k C_k - I) A_{k - 1} + \mathcal{A}_k \stackrel{!}{=} 0$
 		to satisfy the unbiasedness requirement. Hence,
@@ -193,15 +200,17 @@ MIT License
 	<script type="math/tex; mode=display">
 		\mathcal{A}_k = (I - \mathcal{K}_k C_k) A_{k - 1}.
 	</script><br />
+	</div>
 </section>
 <section>
-	<h3>Frequentist derivation 2/5</h3>
+	<h3>Frequentist derivation 2/4</h3>
 	<p>
 		Now, let’s take a look at the minimum variance requirement.</p><p>
 		Define $A_{k - 1} \hat{x}_{k - 1}$ as the <em>estimate prediction</em>
 		$\hat{x}_k^-$ and $C_k \hat{x}_k^-$ as the <em>measurement estimate prediction</em>
 		$\hat{y}_k^-$.
 	</p>
+	<div class="fragment">
 	<p>Then, we can write the filter dynamics as</p>
 	<script type="math/tex; mode=display">
 		\hat{x}_k = \hat{x}_k^- + \mathcal{K}_k (y_k - \hat{y}_k^-)
@@ -210,9 +219,10 @@ MIT License
 	<script type="math/tex; mode=display">
 		\tilde{x}_k^- = A_{k - 1} \tilde{x}_{k - 1} - w_k.
 	</script>
+	</div>
 </section>
 <section>
-	<h3>Frequentist derivation 3/5</h3>
+	<h3>Frequentist derivation 3/4</h3>
 	<p>
 		We now derive the estimate prediction error covariance
 		$P_k^- := \mathrm{cov}\, \tilde{x}_k^-$.
@@ -230,7 +240,7 @@ MIT License
 	</script>
 </section>
 <section>
-	<h3>Frequentist derivation 4/5</h3>
+	<h3>Frequentist derivation 4/4</h3>
 	<p>After even more tedious manipulations, we can show that</p>
 	<script type="math/tex; mode=display">
 		\tilde{x}_k = (I - \mathcal{K}_k C_k) \tilde{x}_k^- + \mathcal{K}_k v_k
@@ -239,7 +249,8 @@ MIT License
 	<script type="math/tex; mode=display">
 		P_k = (I - \mathcal{K}_k C_k) P_k^- (I - \mathcal{K}_k C_k)^\mathrm{T} +
 		\mathcal{K}_k R_k \mathcal{K}_k^\mathrm{T}.
-	</script><br>
+	</script>
+	<div class="fragment">
 	<p>Let’s expand this expression and take its trace:</p>
 	<script type="math/tex; mode=display">
 		\mathrm{tr}\, P_k
@@ -252,9 +263,8 @@ MIT License
 		+
 		\mathrm{tr}\, \mathcal{K}_k R_k \mathcal{K}_k^\mathrm{T}.
 	</script>
-</section>
-<section>
-	<h3>Frequentist derivation 5/5</h3>
+	</div>
+	<div class="fragment">
 	<p>
 		We now look for the minimiser
 		$\mathcal{K}_k^* = \arg \min \mathrm{tr}\, P_k$:
@@ -266,13 +276,16 @@ MIT License
 		+ 2 \mathcal{K}_k C_k P_k^- C_k^\mathrm{T}
 		+ 2 \mathcal{K}_k R_k
 		\stackrel{!}{=} 0.
-	</script><br>
+	</script>
+	</div>
+	<div class="fragment">
 	<p>This minimiser is the <em>Kalman gain</em>:</p>
 	<script type="math/tex; mode=display">
 		K_k = \mathcal{K}_k^* =
 		P_k^- C_k^\mathrm{T}
 		\left( C_k P_k^- C_k^\mathrm{T} + R_k \right)^{-1}.
 	</script>
+	</div>
 </section>
 
 <section>
@@ -280,25 +293,28 @@ MIT License
 	<p>Let’s revise Bayesian inference before we start solving the filtering problem.</p>
 	<p>All derivations will be based on Bayes’ theorem:</p>
 	<script type="math/tex; mode=display">
-		p(A \ | \ B) = \frac{p(B \ | \ A) \ p(A)}{p(B)}
+		p(A \,|\,B) = \frac{p(B \,|\,A) \ p(A)}{p(B)}
 	</script>
+	<div class="fragment">
 	or, informally:
 	<script type="math/tex; mode=display">
-		p(\text{State} \ | \ \text{Measurements} )
+		p(\text{State} \,|\,\text{Measurements} )
 		=
 		\frac{
-			p(\text{Measurements} \ | \ \text{State} )\ p(\text{State})
+			p(\text{Measurements} \,|\,\text{State} )\ p(\text{State})
 		}{
 			p(\text{Measurements})
 		}.
 	</script></p>
-
+	</div>
+	<div class="fragment">
 	<p>Here,<ul>
-		<li><p>$p(\text{State}\ |\ \text{Measurements})$ is the <em>posterior</em>;</p></li>
-		<li><p>$p(\text{Measurements}\ |\ \text{State})$ is the <em>likelihood</em>;</p></li>
-		<li><p>$p(\text{State})$ is the <em>prior</em>;</p></li>
-		<li><p>$p(\text{Measurements})$ is the <em>total likelihood</em>.</p></li>
+		<li><p class="fragment">$p(\text{State}\,|\,\text{Measurements})$ is the <em>posterior</em>;</p></li>
+		<li><p class="fragment">$p(\text{Measurements}\,|\,\text{State})$ is the <em>likelihood</em>;</p></li>
+		<li><p class="fragment">$p(\text{State})$ is the <em>prior</em>;</p></li>
+		<li><p class="fragment">$p(\text{Measurements})$ is the <em>total likelihood</em>.</p></li>
 	</ul></p>
+	</div>
 </section>
 
 <section>
@@ -329,14 +345,14 @@ MIT License
 	</p>
 	<p>We can now apply Bayes’ theorem for our filtering problem:</p>
 	<script type="math/tex; mode=display">
-		p(x_k \ | \ y_k, \mathcal{Y}_{k - 1})
+		p(x_k \,|\,y_k, \mathcal{Y}_{k - 1})
 		=
 		\frac{%
-		  p(y_k \ | \ x_k, \mathcal{Y}_{k - 1})
+		  p(y_k \,|\,x_k, \mathcal{Y}_{k - 1})
 		  \ %
-		  p(x_k \ | \ \mathcal{Y}_{k - 1})
+		  p(x_k \,|\,\mathcal{Y}_{k - 1})
 		}{%
-		  p(y_k \ | \ \mathcal{Y}_{k - 1})
+		  p(y_k \,|\,\mathcal{Y}_{k - 1})
 		}.
 	</script><br>
 	<p>Let’s take a closer look at all of these terms.</p>
@@ -352,7 +368,7 @@ MIT License
 		the posterior to be given by
 	</p>
 	<script type="math/tex; mode=display">
-		p(x_k \ | \ y_k, \mathcal{Y}_{k - 1})
+		p(x_k \,|\,y_k, \mathcal{Y}_{k - 1})
 		=
 		\left. \mathcal{N}(\hat{x}_k, \ P_k) \right|_{x_k}.
 	</script><br>
@@ -361,6 +377,7 @@ MIT License
 		closed-form solution for the posterior estimate mean $\hat{x}_k$
 		and estimate error covariance $P_k$.
 	</p><br>
+	<div class="fragment">
 	<p>
 		<em>Likelihood:</em>
 		Gives the probability of measuring $y_k$
@@ -368,10 +385,11 @@ MIT License
 		Notice that this is a function of $x_k$ with fixed $y_k$!
 	</p>
 	<script type="math/tex; mode=display">
-		p(y_k \ | \ x_k, \mathcal{Y}_{k - 1})
+		p(y_k \,|\,x_k, \mathcal{Y}_{k - 1})
 		=
 		\left. \mathcal{N}(C_k x_k, \ R_k) \right|_{y_k}.
 	</script>
+	</div>
 </section>
 
 <section>
@@ -384,9 +402,9 @@ MIT License
 	</p>
 	<script type="math/tex; mode=display">
 		\begin{aligned}
-		  p(x_k \ | \ \mathcal{Y}_{k - 1})
+		  p(x_k \,|\,\mathcal{Y}_{k - 1})
 		  &=
-		  \int p(x_k \ | \ x_{k - 1}) \ p(x_{k - 1} \ | \ \mathcal{Y}_{k - 1}) dx_{k - 1} \\
+		  \int p(x_k \,|\,x_{k - 1}) \ p(x_{k - 1} \,|\,\mathcal{Y}_{k - 1}) dx_{k - 1} \\
 		  &=
 		  \int \left. \mathcal{N}(A_{k - 1} x_{k - 1}, \ Q_k) \right|_{x_k} \ %
 		  \left. \mathcal{N}(\hat{x}_{k - 1}, \ P_{k - 1}) \right|_{x_{k - 1}} dx_{k - 1}  \\
@@ -396,7 +414,7 @@ MIT License
 		  \left. \mathcal{N}(\hat{x}_k^-, \ P_k^-) \right|_{x_k}.
 		\end{aligned}
 	</script><br>
-	<p>We used [4, (2.115), p. 93] to obtain this result.</p>
+	<p><small>We used [4, (2.115), p. 93] to obtain this result.</small></p>
 </section>
 
 <section>
@@ -409,11 +427,11 @@ MIT License
 	</p>
 	<script type="math/tex; mode=display">
 		\begin{aligned}
-		  p(y_k \ | \ \mathcal{Y}_{k - 1})
+		  p(y_k \,|\,\mathcal{Y}_{k - 1})
 		  &=
-		  \int p(y_k, x_k \ | \ \mathcal{Y}_{k - 1}) dx_k \\
+		  \int p(y_k, x_k \,|\,\mathcal{Y}_{k - 1}) dx_k \\
 		  &=
-		  \int p(y_k \ | \ x_k) \  p(x_k \ | \ \mathcal{Y}_{k - 1}) dx_k \\
+		  \int p(y_k \,|\,x_k) \  p(x_k \,|\,\mathcal{Y}_{k - 1}) dx_k \\
 		  &=
 		  \int \left. \mathcal{N}(C_k x_k, \ R_k) \right|_{y_k} \ %
 		  \left. \mathcal{N}(\hat{x}_k^-, \ P_k^-) \right|_{x_k} dx_k \\
@@ -423,14 +441,14 @@ MIT License
 		  \left. \mathcal{N}(\hat{y}_k^-, \ C_k P_k^- C_k^\mathrm{T} + R_k) \right|_{y_k}
 		\end{aligned}
 	</script><br>
-	<p>We used [4, (2.115), p. 93] to obtain this result.</p>
+	<p><small>We used [4, (2.115), p. 93] to obtain this result.</small></p>
 </section>
 
 <section>
 	<h3>Bayesian derivation 5/6</h3>
 	<p>So far, we have</p>
 	<script type="math/tex; mode=display">
-		p(x_k \ | \ y_k, \mathcal{Y}_{k - 1})
+		p(x_k \,|\, y_k, \mathcal{Y}_{k - 1})
 		=
 		\frac{%
 		  \left. \mathcal{N}(C_k x_k, \ R_k) \right|_{y_k} %
@@ -440,6 +458,7 @@ MIT License
 		  \left. \mathcal{N}(\hat{y}_k^-, \ C_k P_k^- C_k^\mathrm{T} + R_k) \right|_{y_k}
 		}.
 	</script><br>
+	<div class="fragment">
 	<p>Recall the Gaussian pdf. One can show [5, Theorem 2, p. 60], [6] that</p>
 	<script type="math/tex; mode=display">
 		\left. \mathcal{N}(C_k x_k, \ R_k) \right|_{y_k} %
@@ -450,7 +469,8 @@ MIT License
 		\ %
 		\left. \mathcal{N}(y_k, \ C_k P_k^- C_k^\mathrm{T} + R_k ) \right|_{\hat{y}_k^-}
 	</script>
-	<p>
+	</div>
+	<p class="fragment">
 		with
 		<script type="math/tex; mode=display">
 			\begin{aligned}
@@ -460,16 +480,18 @@ MIT License
 			\end{aligned}
 		</script><br>
 	</p>
+	<div class="fragment">
 	<p>
 		Obviously,
 		$\left. \mathcal{N}(\mu, \ \Sigma ) \right|_x = \left. \mathcal{N}(x, \ \Sigma ) \right|_{\mu}$.
 		Hence,
 	</p>
 	<script type="math/tex; mode=display">
-		p(x_k \ | \ y_k, \mathcal{Y}_{k - 1})
+		p(x_k \,|\,y_k, \mathcal{Y}_{k - 1})
 		=
 		\left. \mathcal{N}(\hat{x}_k, \ P_k) \right|_{x_k}.
 	</script>
+	</div>
 </section>
 
 <section>
@@ -495,7 +517,7 @@ MIT License
 			P_k C_k^\mathrm{T} R_k^{-1} &= K_k.
 		\end{aligned}
 	</script><br />
-	<p>
+	<p class="fragment">
 		Remember that covariance matrices are positive definite and
 		$X P X^\mathrm{T}$ is at least positive semi-definite if
 		$P$ is positive definite [7, p. 431].
@@ -508,14 +530,14 @@ MIT License
 	<h3>Comparison of frequentist and Bayesian approaches</h3>
 	<p>Frequentist approach:</p>
 	<ul>
-		<li><p>No explicit prior; it comes implicitly from the fact that the MVUE is a linear dynamical system;</p></li>
-		<li><p>This result itself, although conceptually simple, is quite hard to obtain, cf. [3] for the proof.</p></li>
+		<li><p class="fragment">No explicit prior; it comes implicitly from the fact that the MVUE is a linear dynamical system;</p></li>
+		<li><p class="fragment">This result itself, although conceptually simple, is quite hard to obtain, cf. [3] for the proof.</p></li>
 	</ul>
 	<p>Bayesian approach:</p>
 	<ul>
-		<li><p>The prior is taken explicitly into account;</p></li>
-		<li><p>Absolutely no optimality was required: we just applied Bayes’ theorem;</p></li>
-		<li><p>
+		<li><p class="fragment">The prior is taken explicitly into account;</p></li>
+		<li><p class="fragment">Absolutely no optimality was required: we just applied Bayes’ theorem;</p></li>
+		<li><p class="fragment">
 			Unfortunately, this straightforward approach is possible only in the Gaussian setting;
 			computation of conditional probabilities becomes quickly intractable for other distributions.
 		</p></li>
@@ -529,19 +551,19 @@ MIT License
 		quadratic loss functions, cf. [2, Theorem 2, p. 38].
 		However, it is neither unbiased nor minimum variance anymore.
 	</p>
-	<p>
+	<p class="fragment">
 		<em>What if the system dynamics or the measurement equation is nonlinear?</em><br />
 		In this case, one can either linearise the dynamics and measurement equations around the
 		current estimate or perform a stochastic linearisation.
 		The former approach is known as the <em>extended Kalman filter</em> (EKF) and the latter as
 		the <em>unscented Kalman filter</em> (UKF).
 	</p>
-	<p>
+	<p class="fragment">
 		The principal advantage of EKF and UKF is their computational tractability.
 		On the downside, both of them can perform arbitrarily badly.
 		See [8, Fig. 1, p. 6] for an example of degeneracy of the unscented transformation.
 	</p>
-	<p>
+	<p class="fragment">
 		If fast computation of estimates is not required, one can use a <em>particle filter</em>
 		to approximate the conditional probabilities with a sequential Monte Carlo approach.
 		The estimation error in a particle filter converges to zero as the number of particles
