@@ -34,6 +34,7 @@ MIT License
 <div class="reveal">
 <div class="slides">
 
+
 <section class="center">
 	<h2>Two derivations of the Kalman filter</h2>
 	<small>
@@ -619,6 +620,8 @@ MIT License
 	</p>
 	</small>
 </section>
+
+
 </div>
 </div>
 
@@ -632,16 +635,16 @@ MIT License
 		history: true,
 		center: false,
 
-		transition: 'fade', // none/fade/slide/convex/concave/zoom
+		transition: 'fade',
 
 		math: {
 			// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
-			config: 'TeX-AMS_HTML-full'
+			config: 'TeX-AMS_HTML-full',
 		},
 
 		dependencies: [
 			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-			{ src: 'plugin/math/math.js', async: true }
+			{ src: 'plugin/math/math.js', async: true },
 		],
 	});
 	Reveal.configure({
