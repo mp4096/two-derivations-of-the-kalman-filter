@@ -13,7 +13,7 @@ MIT License
 <head>
 	<meta charset="utf-8">
 
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:200|Raleway:200" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:200%7CRaleway:200" rel="stylesheet">
 
 	<title>Two derivations of the Kalman filter</title>
 
@@ -37,10 +37,8 @@ MIT License
 
 <section class="center">
 	<h2>Two derivations of the Kalman filter</h2>
-	<small>
-		<p><a style="color:#222" href="https://github.com/mp4096">Mikhail Pak</a>, July 2016</p>
-		<p style="color:#EEE">CC-BY-NC-SA 4.0</p>
-	</small>
+	<p style="font-size: 75%"><a style="color:#222" href="https://github.com/mp4096">Mikhail Pak</a>, July 2016</p>
+	<p style="color:#EEE; font-size: 75%">CC-BY-NC-SA 4.0</p>
 </section>
 
 <section>
@@ -128,7 +126,7 @@ MIT License
 			<script type="math/tex; mode=display">
 				\min \mathrm{tr}\,{P_k} \ \ \forall k, \quad \mathrm{tr}\,{P_k} = \sum_i \sigma_i^2 .
 			</script>
-		</p></li>
+		</li>
 		<li class="fragment">
 			<p><em>unbiased:</em> the expectation of the estimation error should be zero:</p>
 			<script type="math/tex; mode=display">
@@ -298,15 +296,16 @@ MIT License
 		}{
 			p(\text{Measurements})
 		}.
-	</script></p>
+	</script>
 	</div>
 	<div class="fragment">
-	<p>Here,<ul>
+	<p>Here,</p>
+	<ul>
 		<li class="fragment"><p>$p(\text{State}\,|\,\text{Measurements})$ is the <em>posterior</em>;</p></li>
 		<li class="fragment"><p>$p(\text{Measurements}\,|\,\text{State})$ is the <em>likelihood</em>;</p></li>
 		<li class="fragment"><p>$p(\text{State})$ is the <em>prior</em>;</p></li>
 		<li class="fragment"><p>$p(\text{Measurements})$ is the <em>total likelihood</em>.</p></li>
-	</ul></p>
+	</ul>
 	</div>
 </section>
 
@@ -566,59 +565,58 @@ MIT License
 
 
 <section>
-	<h3>References</h3><small>
-	<p>
+	<h3>References</h3>
+	<p style="font-size: 75%">
 		[1] Sam Roweis and Zoubin Ghahramani.
 		A unifying review of linear Gaussian models.
 		Neural Computation, 11(2): 305–345, Feb 1999.
 		DOI: <a href="http://dx.doi.org/10.1162/089976699300016674">10.1162/089976699300016674</a>.
 	</p>
-	<p>
+	<p style="font-size: 75%">
 		[2] Rudolph Emil Kálmán.
 		A new approach to linear filtering and prediction problems.
 		Transactions of the ASME–Journal of Basic Engineering, 82(Series D): 35–45, 1960.
 	</p>
-	<p>
+	<p style="font-size: 75%">
 		[3] Vladimir S. Pugachev.
 		A possible general solution of the problem of determination of an optimal dynamical system.
 		Automation and Remote Control, 17(7): 585–589, 1956.
 	</p>
-	<p>
+	<p style="font-size: 75%">
 		[4] Christopher M. Bishop.
 		Pattern Recognition and Machine Learning.
 		Springer-Verlag New York Inc., 2006.
 		ISBN 0387310738.
 	</p>
-	<p>
+	<p style="font-size: 75%">
 		[5] A.L. Barker, D.E. Brown, and W.N. Martin.
 		Bayesian estimation and the Kalman filter.
 		Computers &amp; Mathematics with Applications, 30(10): 55–77, Nov 1995.
 		DOI: <a href="http://dx.doi.org/10.1016/0898-1221(95)00156-S">10.1016/0898-1221(95)00156-s</a>.
 	</p>
-	<p>
+	<p style="font-size: 75%">
 		[6] D.J. Salmond.
 		Tracking in uncertain environments.
 		Technical Memorandum AW121, Royal Aerospace Establishment,
 		1989.
 	</p>
-	<p>
+	<p style="font-size: 75%">
 		[7] Roger A. Horn and Charles R. Johnson.
 		Matrix Analysis.
 		Cambridge University Press, 2nd edition, 2013.
 		ISBN 978-0-521-54823-6.
 	</p>
-	<p>
+	<p style="font-size: 75%">
 		[8] Marc Peter Deisenroth, Ryan Darby Turner, Marco F. Huber,
 		Uwe D. Hanebeck, and Carl Edward Rasmussen.
 		Robust filtering and smoothing with Gaussian processes.
 		IEEE Transactions on Automatic Control, 57(7): 1865–1871, Jul 2012.
 		DOI: <a href="http://dx.doi.org/10.1109/TAC.2011.2179426">10.1109/tac.2011.2179426</a>.
-	<p>
+	<p style="font-size: 75%">
 		[9] Dan Simon. Optimal State Estimation.
 		John Wiley &amp; Sons Inc, 2006.
 		ISBN 0471708585.
 	</p>
-	</small>
 </section>
 
 
